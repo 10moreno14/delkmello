@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>del k mello | Dotaciones & Textiles Empresariales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0f1f3d;
+      --navy-md: #1a3560;
+      --gold:    #c9a84c;
+      --gold-lt: #e2c97e;
+      --cream:   #f8f5f0;
+      --warm-gray: #e8e2d9;
+      --mid-gray: #7a7a7a;
+      --dark:    #1a1a1a;
+      --white:   #ffffff;
+      --radius:  10px;
+      --shadow:  0 4px 24px rgba(15,31,61,.10);
+      --shadow-lg: 0 8px 40px rgba(15,31,61,.16);
+      --transition: .3s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin-inline: auto;
+      padding-inline: 1.25rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .65rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--mid-gray);
+      max-width: 560px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .8rem 2rem;
+      border-radius: 50px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(201,168,76,.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--white);
+      color: var(--white);
+    }
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    section { padding-block: 5rem; }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(15,31,61,.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,.15);
+      transition: box-shadow var(--transition);
+    }
+
+    #navbar.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .88rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.8);
+      letter-spacing: .03em;
+      transition: color var(--transition);
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width var(--transition);
+      border-radius: 1px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--navy);
+      z-index: 999;
+      padding: 1.5rem 1.25rem 2rem;
+      border-top: 1px solid rgba(201,168,76,.15);
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: opacity var(--transition), transform var(--transition);
+      pointer-events: none;
+    }
+
+    .mobile-menu.open {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+
+    .mobile-menu ul a {
+      display: block;
+      color: rgba(255,255,255,.85);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: .75rem .5rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      transition: color var(--transition);
+    }
+
+    .mobile-menu ul a:hover { color: var(--gold); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #inicio {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-block: 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('Inicio.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(.45);
+      transform: scale(1.03);
+      transition: transform 8s ease;
+    }
+
+    #inicio:hover .hero-bg { transform: scale(1); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(15,31,61,.72) 0%,
+        rgba(15,31,61,.35) 60%,
+        rgba(0,0,0,.2) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-block: 7rem 4rem;
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(201,168,76,.18);
+      border: 1px solid rgba(201,168,76,.4);
+      border-radius: 50px;
+      color: var(--gold-lt);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold-lt);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,.78);
+      margin-bottom: 2.4rem;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      color: rgba(255,255,255,.5);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll svg { width: 20px; opacity: .6; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ============================================================
+       SERVICIOS CARDS (within hero band)
+    ============================================================ */
+    #servicios-preview {
+      background: var(--navy);
+      padding-block: 0;
+    }
+
+    .services-band {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0;
+      margin-top: -1px;
+    }
+
+    .service-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 2.4rem 2rem;
+      border-right: 1px solid rgba(255,255,255,.07);
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    .service-card:last-child { border-right: none; }
+
+    .service-card:hover {
+      background: rgba(201,168,76,.07);
+      border-bottom-color: var(--gold);
+    }
+
+    .service-icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(201,168,76,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-icon svg {
+      width: 24px;
+      color: var(--gold);
+    }
+
+    .service-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: .4rem;
+    }
+
+    .service-card p {
+      font-size: .88rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       SERVICIOS (full section)
+    ============================================================ */
+    #servicios {
+      background: var(--cream);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .services-header .divider { margin-inline: auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .srv-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .srv-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .srv-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: var(--warm-gray);
+    }
+
+    .srv-card-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--warm-gray) 0%, #d0c8bc 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .srv-card-body {
+      padding: 1.75rem;
+    }
+
+    .srv-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: .6rem;
+    }
+
+    .srv-card-body p {
+      font-size: .92rem;
+      color: var(--mid-gray);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .srv-tag {
+      display: inline-block;
+      background: rgba(201,168,76,.12);
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      border-radius: 50px;
+      margin-right: .4rem;
+      margin-bottom: .4rem;
+    }
+
+    /* ============================================================
+       PORTAFOLIO
+    ============================================================ */
+    #portafolio {
+      background: var(--white);
+    }
+
+    .portfolio-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .portfolio-tabs {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .tab-btn {
+      padding: .55rem 1.4rem;
+      border-radius: 50px;
+      border: 2px solid var(--warm-gray);
+      background: transparent;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--mid-gray);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .tab-btn.active,
+    .tab-btn:hover {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+    }
+
+    .portfolio-item-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .portfolio-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      transition: transform .5s ease;
+    }
+
+    .portfolio-item:hover .portfolio-item-bg,
+    .portfolio-item:hover .portfolio-placeholder {
+      transform: scale(1.08);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,31,61,.85) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+    .portfolio-overlay span {
+      color: var(--white);
+      font-size: .88rem;
+      font-weight: 600;
+    }
+
+    /* Paletas para placeholders */
+    .ph-1 { background: linear-gradient(135deg,#c9bfaf,#a99880); }
+    .ph-2 { background: linear-gradient(135deg,#b8ccd4,#8aaab5); }
+    .ph-3 { background: linear-gradient(135deg,#d4c5b0,#b8a48c); }
+    .ph-4 { background: linear-gradient(135deg,#9fb8c0,#7a9faa); }
+    .ph-5 { background: linear-gradient(135deg,#c4b8a8,#a89880); }
+    .ph-6 { background: linear-gradient(135deg,#aabfca,#7a9eb0); }
+    .ph-7 { background: linear-gradient(135deg,#d0c5b5,#b0a090); }
+    .ph-8 { background: linear-gradient(135deg,#bac8d0,#8aacba); }
+
+    .portfolio-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .portfolio-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--warm-gray);
+    }
+
+    /* ============================================================
+       NOSOTROS
+    ============================================================ */
+    #nosotros {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-img-wrapper {
+      position: relative;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(160deg, var(--warm-gray) 0%, #cdc5b9 100%);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+
+    .about-accent {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 140px;
+      height: 140px;
+      background: var(--gold);
+      border-radius: var(--radius);
+      z-index: -1;
+      opacity: .35;
+    }
+
+    .about-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: -1.5rem;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .about-badge strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .about-badge span {
+      font-size: .75rem;
+      color: rgba(255,255,255,.7);
+      letter-spacing: .04em;
+    }
+
+    .about-content .section-subtitle {
+      margin-bottom: 2rem;
+    }
+
+    .hmv-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .hmv-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 2px 12px rgba(15,31,61,.06);
+    }
+
+    .hmv-card h4 {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+
+    .hmv-card p {
+      font-size: .92rem;
+      color: var(--mid-gray);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       NÚMEROS / STATS
+    ============================================================ */
+    #stats {
+      background: var(--navy);
+      padding-block: 3.5rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+
+    .stat-item span {
+      font-size: .88rem;
+      color: rgba(255,255,255,.6);
+      letter-spacing: .04em;
+    }
+
+    /* ============================================================
+       CONTACTO
+    ============================================================ */
+    #contacto {
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      color: var(--mid-gray);
+      font-size: .95rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-item-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-item-icon svg {
+      width: 20px;
+      color: var(--navy);
+    }
+
+    .contact-item-text strong {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: .15rem;
+    }
+
+    .contact-item-text a,
+    .contact-item-text span {
+      font-size: .95rem;
+      color: var(--mid-gray);
+      transition: color var(--transition);
+    }
+
+    .contact-item-text a:hover { color: var(--gold); }
+
+    /* Form */
+    .contact-form {
+      background: var(--cream);
+      border-radius: calc(var(--radius) * 1.5);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: .05em;
+      margin-bottom: .5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: .85rem 1.1rem;
+      border: 1.5px solid var(--warm-gray);
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      color: var(--dark);
+      background: var(--white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      letter-spacing: .03em;
+    }
+
+    .btn-submit:hover {
+      background: var(--navy-md);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(15,31,61,.25);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.7);
+    }
+
+    .footer-top {
+      padding-block: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-brand img {
+      height: 46px;
+      width: auto;
+      margin-bottom: 1.2rem;
+      object-fit: contain;
+    }
+
+    .footer-brand p {
+      font-size: .9rem;
+      line-height: 1.7;
+      max-width: 280px;
+      color: rgba(255,255,255,.55);
+    }
+
+    .footer-col h4 {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+
+    .footer-col ul a {
+      font-size: .9rem;
+      color: rgba(255,255,255,.55);
+      transition: color var(--transition);
+    }
+
+    .footer-col ul a:hover { color: var(--gold); }
+
+    /* Social band */
+    .social-band {
+      background: rgba(0,0,0,.25);
+      padding-block: 1.5rem;
+    }
+
+    .social-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .social-label {
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+
+    .social-links {
+      display: flex;
+      gap: .75rem;
+    }
+
+    .social-link {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      border: 1.5px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.7);
+    }
+
+    .social-link svg { width: 18px; }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+    }
+
+    .social-link.instagram:hover { background: #E1306C; border-color: #E1306C; color: #fff; }
+    .social-link.whatsapp:hover  { background: #25D366; border-color: #25D366; color: #fff; }
+    .social-link.email:hover     { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+
+    /* Footer bottom */
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-block: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .footer-bottom p {
+      font-size: .82rem;
+      color: rgba(255,255,255,.35);
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,.35);
+      transition: color var(--transition);
+    }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-img-wrapper { order: -1; }
+
+      .about-badge { right: 1rem; }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-cta { display: none; }
+
+      .hamburger { display: flex; }
+
+      section { padding-block: 3.5rem; }
+
+      .hero-content { padding-block: 6rem 3rem; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+
+      .footer-brand { grid-column: auto; }
+
+      .social-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { text-align: center; }
+      .services-band { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); }
+      .service-card:last-child { border-bottom: none; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .about-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container nav-inner">
+      <a href="#inicio" class="nav-logo" aria-label="del k mello - Inicio">
+        <img src="Logo_delkmello.jpg" alt="del k mello" />
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#inicio"    class="active">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+
+      <a href="#contacto" class="btn btn-primary nav-cta" style="display:inline-block;font-size:.82rem;padding:.6rem 1.4rem;">
+        Cotizar ahora
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+    <ul>
+      <li><a href="#inicio"     class="mobile-link">Inicio</a></li>
+      <li><a href="#servicios"  class="mobile-link">Servicios</a></li>
+      <li><a href="#portafolio" class="mobile-link">Portafolio</a></li>
+      <li><a href="#nosotros"   class="mobile-link">Nosotros</a></li>
+      <li><a href="#contacto"   class="mobile-link">Contacto</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section id="inicio" aria-label="Inicio">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Confección & Personalización Textil</div>
+
+          <h1 class="hero-title">
+            Viste a tu equipo<br />con <em>identidad y calidad</em>
+          </h1>
+
+          <p class="hero-subtitle">
+            En <strong style="color:rgba(255,255,255,.9);">del k mello</strong> transformamos textiles en prendas que representan a tu empresa. Dotaciones empresariales, personalizaciones y arreglos hechos con precisión, pasión y el más alto estándar de calidad.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">Solicitar cotización</a>
+            <a href="#portafolio" class="btn btn-outline">Ver portafolio</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+        Explorar
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICIO RÁPIDO (banda bajo el hero)
+    ============================================================ -->
+    <div id="servicios-preview" aria-hidden="true">
+      <div class="services-band">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <line x1="10" y1="9" x2="8" y2="9"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Dotaciones Empresariales</h3>
+            <p>Uniformes corporativos y kits completos para equipos de trabajo de cualquier tamaño.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Personalización Textil</h3>
+            <p>Bordados, estampados y grabados que llevan la identidad de tu marca a cada prenda.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Arreglos & Confección</h3>
+            <p>Ajustes a medida, reparaciones profesionales y confección desde cero para prendas únicas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         SERVICIOS (full)
+    ============================================================ -->
+    <section id="servicios" aria-labelledby="servicios-title">
+      <div class="container">
+        <div class="services-header">
+          <span class="section-tag">Lo que hacemos</span>
+          <h2 class="section-title" id="servicios-title">Nuestros servicios</h2>
+          <div class="divider"></div>
+          <p class="section-subtitle" style="margin-inline:auto;">
+            Desde la confección completa hasta el detalle más fino de un bordado, ofrecemos soluciones textiles integrales para empresas y particulares.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <!-- Dotaciones -->
+          <div class="srv-card">
+            <div class="srv-card-img-placeholder">👔</div>
+            <div class="srv-card-body">
+              <h3>Dotaciones Empresariales</h3>
+              <p>
+                Desarrollamos uniformes corporativos completos: camisas, chaquetas, pantalones, overoles y más. Trabajamos con empresas de todos los sectores garantizando durabilidad, comodidad y una imagen impecable para tu equipo.
+              </p>
+              <span class="srv-tag">Uniformes</span>
+              <span class="srv-tag">Kits corporativos</span>
+              <span class="srv-tag">Entrega a tiempo</span>
+            </div>
+          </div>
+
+          <!-- Personalización -->
+          <div class="srv-card">
+            <div class="srv-card-img-placeholder">🧵</div>
+            <div class="srv-card-body">
+              <h3>Personalización Textil</h3>
+              <p>
+                Aplicamos bordados en alta definición, estampados de serigrafía, sublimación y transfer sobre cualquier prenda. Tu logo, slogan o diseño quedará impreso con precisión y durabilidad garantizada.
+              </p>
+              <span class="srv-tag">Bordado</span>
+              <span class="srv-tag">Sublimación</span>
+              <span class="srv-tag">Serigrafía</span>
+            </div>
+          </div>
+
+          <!-- Arreglos -->
+          <div class="srv-card">
+            <div class="srv-card-img-placeholder">✂️</div>
+            <div class="srv-card-body">
+              <h3>Arreglos & Confección a Medida</h3>
+              <p>
+                Realizamos ajustes profesionales, arreglos de urgencia y confección desde tela cruda. Cada prenda sale de nuestro taller con acabados de sastrería que marcan la diferencia en el detalle.
+              </p>
+              <span class="srv-tag">Sastrería</span>
+              <span class="srv-tag">Medidas exactas</span>
+              <span class="srv-tag">Reparaciones</span>
+            </div>
+          </div>
+
+          <!-- Creación -->
+          <div class="srv-card">
+            <div class="srv-card-img-placeholder">🎨</div>
+            <div class="srv-card-body">
+              <h3>Creación de Prendas Únicas</h3>
+              <p>
+                ¿Tienes una idea y no sabes por dónde empezar? Nuestro equipo de diseño te acompaña desde el boceto hasta la prenda final, creando piezas originales que reflejen exactamente lo que tienes en mente.
+              </p>
+              <span class="srv-tag">Diseño original</span>
+              <span class="srv-tag">Prototipo</span>
+              <span class="srv-tag">Edición limitada</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PORTAFOLIO
+    ============================================================ -->
+    <section id="portafolio" aria-labelledby="portafolio-title">
+      <div class="container">
+        <div class="portfolio-header">
+          <span class="section-tag">Nuestro trabajo</span>
+          <h2 class="section-title" id="portafolio-title">Portafolio</h2>
+          <div class="divider"></div>
+          <p class="section-subtitle">
+            Cada proyecto es una historia de transformación. Aquí algunos ejemplos de lo que hemos creado para nuestros clientes.
+          </p>
+        </div>
+
+        <!-- Sub-sección: Personalización -->
+        <h3 class="portfolio-section-title">Personalización y arreglo de textiles</h3>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <div class="portfolio-placeholder ph-1">🧵</div>
+            <div class="portfolio-overlay"><span>Bordado logo corporativo</span></div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-placeholder ph-2">✂️</div>
+            <div class="portfolio-overlay"><span>Arreglo sastrería a medida</span></div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-placeholder ph-3">🎨</div>
+            <div class="portfolio-overlay"><span>Estampado por sublimación</span></div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-placeholder ph-4">👗</div>
+            <div class="portfolio-overlay"><span>Confección prenda única</span></div>
+          </div>
+        </div>
+
+        <!-- Sub-sección: Dotaciones -->
+        <h3 class="portfolio-section-title">Dotaciones empresariales</h3>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <div class="portfolio-placeholder ph-5">👔</div>
+            <div class="portfolio-overlay"><span>Uniformes sector salud</span></div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-placeholder ph-6">🦺</div>
+            <div class="portfolio-overlay"><span>Dotación industrial completa</span></div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-placeholder ph-7">👕</div>
+            <div class="portfolio-overlay"><span>Camisas corporativas</span></div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-placeholder ph-8">🧥</div>
+            <div class="portfolio-overlay"><span>Chaquetas institucionales</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STATS
+    ============================================================ -->
+    <div id="stats" aria-label="Números que nos respaldan">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <strong>+200</strong>
+            <span>Clientes satisfechos</span>
+          </div>
+          <div class="stat-item">
+            <strong>+5K</strong>
+            <span>Prendas confeccionadas</span>
+          </div>
+          <div class="stat-item">
+            <strong>+50</strong>
+            <span>Empresas aliadas</span>
+          </div>
+          <div class="stat-item">
+            <strong>100%</strong>
+            <span>Compromiso con la calidad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         NOSOTROS
+    ============================================================ -->
+    <section id="nosotros" aria-labelledby="nosotros-title">
+      <div class="container">
+        <div class="about-grid">
+
+          <!-- Imagen -->
+          <div class="about-img-wrapper">
+            <div class="about-img-placeholder">🪡</div>
+            <div class="about-accent" aria-hidden="true"></div>
+            <div class="about-badge">
+              <strong>+8</strong>
+              <span>años de experiencia</span>
+            </div>
+          </div>
+
+          <!-- Texto -->
+          <div class="about-content">
+            <span class="section-tag">Quiénes somos</span>
+            <h2 class="section-title" id="nosotros-title">La historia detrás<br />de cada costura</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">
+              <strong>del k mello</strong> nació de la pasión por el trabajo bien hecho y el respeto por cada hilo. Lo que empezó como un pequeño taller de confección familiar, hoy es una empresa de referencia en dotaciones y personalización textil para el sector empresarial.
+            </p>
+
+            <div class="hmv-cards">
+              <div class="hmv-card">
+                <h4>Historia</h4>
+                <p>Fundada hace más de ocho años, <em>del k mello</em> comenzó atendiendo pedidos locales de arreglos y sastrería. La calidad del trabajo habló por sí sola: los clientes regresaban y traían consigo a sus empresas. Así, poco a poco, crecimos hasta convertirnos en aliados estratégicos de compañías de distintos sectores.</p>
+              </div>
+              <div class="hmv-card">
+                <h4>Visión</h4>
+                <p>Ser la empresa textil de referencia en la región, reconocida por la excelencia en cada prenda, la innovación en técnicas de personalización y la construcción de relaciones duraderas con nuestros clientes y colaboradores.</p>
+              </div>
+              <div class="hmv-card">
+                <h4>Misión</h4>
+                <p>Crear soluciones textiles de alta calidad que refuercen la identidad y profesionalismo de las organizaciones que confían en nosotros, garantizando precisión, puntualidad y un trato cercano en cada pedido.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACTO
+    ============================================================ -->
+    <section id="contacto" aria-labelledby="contacto-title">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:3.5rem;">
+          <span class="section-tag">Hablemos</span>
+          <h2 class="section-title" id="contacto-title">¿Listo para empezar?</h2>
+          <div class="divider" style="margin-inline:auto;"></div>
+          <p class="section-subtitle" style="margin-inline:auto;">
+            Cuéntanos tu proyecto y te daremos una cotización sin compromisos en menos de 24 horas.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+
+          <!-- Info -->
+          <div class="contact-info">
+            <h3>Información de contacto</h3>
+            <p>Estamos disponibles para atenderte de lunes a sábado. No dudes en escribirnos o llamarnos, siempre hay alguien dispuesto a escucharte.</p>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="contact-item-text">
+                <strong>Teléfono / WhatsApp</strong>
+                <a href="https://wa.me/573000000000" target="_blank" rel="noopener">+57 300 000 0000</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="contact-item-text">
+                <strong>Correo electrónico</strong>
+                <a href="mailto:contacto@delkmello.com">contacto@delkmello.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="contact-item-text">
+                <strong>Ubicación</strong>
+                <span>Colombia — atención personalizada y envíos a todo el país</span>
+              </div>
+            </div>
+
+            <!-- Social inline -->
+            <div style="margin-top:2rem;">
+              <p style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:.9rem;">Síguenos</p>
+              <div class="social-links">
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                   class="social-link instagram"
+                   aria-label="Instagram"
+                   style="border-color:var(--warm-gray);color:var(--navy);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                </a>
+                <a href="https://wa.me/573000000000" target="_blank" rel="noopener"
+                   class="social-link whatsapp"
+                   aria-label="WhatsApp"
+                   style="border-color:var(--warm-gray);color:var(--navy);">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                  </svg>
+                </a>
+                <a href="mailto:contacto@delkmello.com"
+                   class="social-link email"
+                   aria-label="Correo electrónico"
+                   style="border-color:var(--warm-gray);color:var(--navy);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <div class="contact-form">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:1.5rem;">
+              Envíanos tu solicitud
+            </h3>
+
+            <form action="#" method="post" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nombre">Nombre completo</label>
+                  <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+                </div>
+                <div class="form-group">
+                  <label for="empresa">Empresa (opcional)</label>
+                  <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="servicio">Servicio de interés</label>
+                <select id="servicio" name="servicio">
+                  <option value="">Selecciona un servicio</option>
+                  <option>Dotaciones empresariales</option>
+                  <option>Personalización y bordados</option>
+                  <option>Arreglos y sastrería</option>
+                  <option>Confección a medida</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="mensaje">Tu mensaje</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos tu proyecto: cantidad de prendas, tipo de personalización, fechas de entrega..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">Enviar solicitud →</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container footer-top">
+
+      <div class="footer-brand">
+        <img src="Logo_delkmello.jpg" alt="del k mello" />
+        <p>
+          Confeccionamos identidad. Cada prenda que sale de nuestro taller lleva consigo el compromiso de quienes hacemos posible que tu equipo luzca extraordinario.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Dotaciones empresariales</a></li>
+          <li><a href="#servicios">Personalización textil</a></li>
+          <li><a href="#servicios">Bordados & estampados</a></li>
+          <li><a href="#servicios">Arreglos & sastrería</a></li>
+          <li><a href="#servicios">Confección a medida</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#nosotros">Nuestra historia</a></li>
+          <li><a href="#nosotros">Visión & Misión</a></li>
+          <li><a href="#portafolio">Portafolio</a></li>
+          <li><a href="#contacto">Cotiza tu proyecto</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Social band -->
+    <div class="social-band">
+      <div class="container social-inner">
+        <span class="social-label">Encuéntranos en redes</span>
+        <div class="social-links">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+             class="social-link instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/573000000000" target="_blank" rel="noopener"
+             class="social-link whatsapp" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+          </a>
+          <a href="mailto:contacto@delkmello.com"
+             class="social-link email" aria-label="Correo electrónico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="container footer-bottom">
+      <p>&copy; 2026 <a href="#inicio">del k mello</a>. Todos los derechos reservados.</p>
+      <p>Hecho con <span style="color:var(--gold);">♥</span> para vestir grandes empresas.</p>
+    </div>
+
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close on mobile link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Navbar shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id], #stats');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+
+    // Animate stats on scroll
+    function animateCount(el, target, suffix) {
+      let start = 0;
+      const duration = 1800;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = (suffix === '%' ? '' : '+') + Math.floor(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    const statsSection = document.getElementById('stats');
+    let statsAnimated = false;
+    const statsObserver = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !statsAnimated) {
+        statsAnimated = true;
+        const items = [
+          { el: document.querySelectorAll('.stat-item strong')[0], val: 200, suffix: '' },
+          { el: document.querySelectorAll('.stat-item strong')[1], val: 5000, suffix: '' },
+          { el: document.querySelectorAll('.stat-item strong')[2], val: 50,   suffix: '' },
+          { el: document.querySelectorAll('.stat-item strong')[3], val: 100,  suffix: '%' },
+        ];
+        items.forEach(({ el, val, suffix }) => animateCount(el, val, suffix));
+      }
+    }, { threshold: 0.5 });
+
+    if (statsSection) statsObserver.observe(statsSection);
+  </script>
+
+</body>
+</html>
