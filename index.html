@@ -1525,7 +1525,7 @@
               Envíanos tu solicitud
             </h3>
 
-            <form action="#" method="post" novalidate>
+            <form id="contactForm" novalidate>
               <div class="form-row">
                 <div class="form-group">
                   <label for="nombre">Nombre completo</label>
@@ -1559,7 +1559,15 @@
                 <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos tu proyecto: cantidad de prendas, tipo de personalización, fechas de entrega..."></textarea>
               </div>
 
-              <button type="submit" class="btn-submit">Enviar solicitud →</button>
+              <button type="submit" id="btnSubmit" class="btn-submit">Enviar solicitud →</button>
+
+              <!-- Mensajes de estado -->
+              <div id="formSuccess" style="display:none;margin-top:1rem;padding:.9rem 1.1rem;background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;color:#065f46;font-size:.92rem;font-weight:500;text-align:center;">
+                ✅ ¡Mensaje enviado! Te contactaremos muy pronto.
+              </div>
+              <div id="formError" style="display:none;margin-top:1rem;padding:.9rem 1.1rem;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;color:#991b1b;font-size:.92rem;font-weight:500;text-align:center;">
+                ❌ Algo salió mal. Escríbenos directamente a delkmello@gmail.com
+              </div>
             </form>
           </div>
 
@@ -1720,6 +1728,62 @@
     }, { threshold: 0.5 });
 
     if (statsSection) statsObserver.observe(statsSection);
+
+    // ── FORMULARIO → GOOGLE SHEETS ──────────────────────────────
+    // Pega aquí la URL de tu Web App de Google Apps Script:
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUbEsO115THB9M5_RilPNfLVbfMCIskmHa61WbkTmrbCOeRJxivwEFzfjfznEsdkvQGg/exec';
+
+    const contactForm = document.getElementById('contactForm');
+    const btnSubmit   = document.getElementById('btnSubmit');
+    const formSuccess = document.getElementById('formSuccess');
+    const formError   = document.getElementById('formError');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Validación básica
+        const nombre = document.getElementById('nombre').value.trim();
+        const correo = document.getElementById('correo').value.trim();
+        if (!nombre || !correo) {
+          document.getElementById('nombre').reportValidity();
+          document.getElementById('correo').reportValidity();
+          return;
+        }
+
+        // Estado: enviando
+        btnSubmit.disabled    = true;
+        btnSubmit.textContent = 'Enviando…';
+        formSuccess.style.display = 'none';
+        formError.style.display   = 'none';
+
+        // Armar los datos como URLSearchParams
+        const params = new URLSearchParams({
+          nombre:   nombre,
+          empresa:  document.getElementById('empresa').value.trim(),
+          correo:   correo,
+          servicio: document.getElementById('servicio').value,
+          mensaje:  document.getElementById('mensaje').value.trim()
+        });
+
+        try {
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode:   'no-cors',   // necesario para Apps Script desde archivo local
+            body:   params
+          });
+
+          // Éxito → mostrar mensaje y limpiar formulario
+          formSuccess.style.display = 'block';
+          contactForm.reset();
+        } catch (err) {
+          formError.style.display = 'block';
+        } finally {
+          btnSubmit.disabled    = false;
+          btnSubmit.textContent = 'Enviar solicitud →';
+        }
+      });
+    }
   </script>
 
 </body>
